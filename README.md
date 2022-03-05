@@ -1,5 +1,5 @@
 # Sorrowset EC2
-## _Attack VMs for everyone_
+## _Fat, sad and full of Evil_
 
 ## Features
 
