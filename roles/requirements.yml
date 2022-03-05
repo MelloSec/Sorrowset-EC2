@@ -1,0 +1,49 @@
+- src: https://github.com/ansible-community/ansible-vault.git
+  name: ansible-community.ansible-vault
+  scm: git
+  version: master
+
+  ---
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: weareinteractive.users
+
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: geerlingguy.pip
+
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: geerlingguy.ntp    
+
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: geerlingguy.security
+
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: viasite-ansible.zsh
+
+roles:
+  # Install a role from Ansible Galaxy.
+  - name: ansible-elasticsearch
+
+roles:
+# Install a role from Ansible Galaxy.
+ - name: ansible-traefik
+
+roles:
+  # Install a role from Ansible Galaxy.
+ - name: ansible-kasm_server
+
+roles:
+  # Install a role from Ansible Galaxy.
+ - name: ansible-vault
+
+roles:
+  # Install a role from Ansible Galaxy.
+ - name: darkwizard242.hugo
+
+roles:
+  # Install a role from Ansible Galaxy.
+ - name: justin_p.gophish

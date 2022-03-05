@@ -1,0 +1,11 @@
+---
+exclude_paths:
+  - roles/
+  - files/
+  - .github/
+  - molecule/
+  - .cache/
+  - ${HOME}/.ansible/roles/
+skip_list:
+  - experimental
+  - 701

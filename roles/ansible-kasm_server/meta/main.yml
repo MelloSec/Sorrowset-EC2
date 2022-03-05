@@ -1,0 +1,38 @@
+---
+galaxy_info:
+  author: Michal Muransky
+  role_name: kasm_server
+  namespace: monolithprojects
+  description: Kasm server installation
+  company: MonolithProjects
+  license: "license (MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+  galaxy_tags:
+    - kasm
+    - virtual
+    - desktop
+    - isolation
+    - web
+    - system
+    - containers
+    - docker
+    - compose
+    - server
+dependencies: []

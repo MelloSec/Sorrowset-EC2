@@ -1,0 +1,11 @@
+- name: Create Swap
+  shell: sudo dd if=/dev/zero bs=1M count=1024 of=/mnt/1GiB.swap
+  become: true 
+
+- name: Swap Permissions
+  shell: sudo chmod 600 /mnt/1GiB.swap
+  become: true
+
+- name: Get yo swap on
+  shell: sudo mkswap /mnt/1GiB.swap && sudo swapon /mnt/1GiB.swap
+  become: true 

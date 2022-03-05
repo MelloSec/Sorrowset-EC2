@@ -1,0 +1,4 @@
+- name: ZeroTier Oneliner
+  shell: curl -s https://install.zerotier.com | sudo bash
+  become: true 
+
