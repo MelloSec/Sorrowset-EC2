@@ -6,7 +6,7 @@
 - Terraform to create server, networking and setup Ansible User
 - Ansible to further configure, install Docker/Compose, containers 
 
-## What's Happening Here
+#### [ _What Terraform's Doing_ ]
 
 ###### 1. Terraform reaches out to AWS APIs and provisions a VPC, subnets, project tags.
 - Change the `CIDR`, `subnets`, `region` and `tags` under `main.tf`
@@ -30,16 +30,65 @@
 
 ## Instructions
 
-`
-sudo apt
-`
+###### - Make sure you have Terraform, the AWS-CLI and Ansible installed on your workstation.
+###### - Terraform will save state on your workstation, S3/Cloud storage or a Workspace (Hashicorp, Github)
+###### - Ansible roles will install on your workstation and do not need to be installed on the remote VM
+
+ 
+###### 1. Update, install ansible, terraform, aws
 
 ```sh
-cd dillinger
-npm i
-node app
+# Install ansible
+sudo apt install -y ansible
+
+# Install terraform
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+
+# Install AWS cli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 ```
 
+###### 2. Make your mods to `main.tf`, `inventory.yml`, ``providers.tf`, `variables.tf`
+
+ See above '_What Terraform's Doing_'
+
+###### 3. Configure AWS cli with your Access Key and Secret Access Key from the AWS management console
+`
+aws configure
+`
+
+###### 4. Initialize Terraform project, Plan and Apply Changes
+See how your plan looks, then tell terraform to spin it up.
+
+```
+terraform init
+terraform plan
+terraform apply --auto-approve
+```
+
+###### 5. Take the output IP address and put it into the host name under `inventory.yml`
+
+```
+terraform output
+```
+
+###### 6. Customize first run deployment by comment/uncomment roles under `deploy.yml` 
+
+###### 7. Run the deploy.yml playbook
+
+
+
+## ToDo
+
+- [x] Test
+- [ ] Test2
+
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 | Plugin | README |
 | ------ | ------ |
@@ -51,9 +100,4 @@ node app
 | Google Analytics | [plugins/googleanalytics/README.md][PlGa] 
 
 
-## ToDo
 
-- [x] Test
-- [ ] Test2
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
