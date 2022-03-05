@@ -20,7 +20,7 @@
 - `public_key = file("${var.ssh_public_key_location}")`
 
 ###### 4. Terraform configures Security Group module and opens up the firewall
-- Add IP addresses under `ingress_with_cidr_blocks`
+- Add  home/proxy IP addresses under `ingress_with_cidr_blocks`
 
 ###### 5. Terraform calls sorrowset_EC2 Module and builds our server
 - Could change the `name` `instance_type` `key_name` `monitoring` and `volume` information
