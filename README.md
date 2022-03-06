@@ -28,6 +28,39 @@
 ###### 5. Terraform runs shell code, updates VM, creates ansible user, adds keys, passwordless sudo
 - Change it if you want a different `ansible` user
 
+#### [ _What Ansible's Doing_ ]
+
+###### 1. Ansible kicks off with `deploy.yml` 
+
+- `deploy.yml` Gathers facts and installs the role `requirements.yml` (or optionally installs them to the local path of the project) for the project. It sets variables for the Kasm installation, and kicks off installing those roles in that order.
+
+###### 2. Ansible works the `inventory.yml` 
+
+- Sets the python interpreter, SSH/authorized keys, user/permissions and groups, pip/docker options and timezone to be used as the roles deploy
+
+###### 3. Ansible installs roles
+
+- Ansible starts doing the work installing the roles using the variables set in the inventory.
+- weareinteractive.users = Users/Groups/Keys
+- geerlingguy.pip, geerlingguy.ntp = Handles pip and NTP
+- geerlingguy.security = Mostly SSH security. Auto-updates, fail2ban, etc
+- viasite-ansible.zsh = installs zsh
+- docker = Checks for Docker, Installs clean with Compose
+- os = upgrade, locale, swap partition, etc
+- ansible-elasticsearch =
+- ansible-traefik =
+- ansible-kasm_server =
+- ansible-vault =
+- darkwizard242.hugo =
+- justin_p.gophish =
+
+
+
+
+
+
+ 
+
 ## Instructions
 
 ###### - Make sure you have Terraform, the AWS-CLI and Ansible installed on your workstation.
@@ -83,6 +116,7 @@ terraform output
 
 
 
+
 ## ToDo
 
 - [x] Test
@@ -97,7 +131,4 @@ terraform output
 | Google Drive | [plugins/googledrive/README.md][PlGd] |
 | OneDrive | [plugins/onedrive/README.md][PlOd] |
 | Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] 
-
-
-
+| Google Analytics | [plugins/googleanalytics/README.md][PlGa]
