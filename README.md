@@ -1,42 +1,54 @@
 # Sorrowset EC2
 ## _Fat, sad and full of Evil_
 
+
 ## Features
 
 - Terraform to create server, networking and setup Ansible User
 - Ansible to further configure, install Docker/Compose, containers 
 
+
 #### [ _What Terraform's Doing_ ]
+
 
 ###### 1. Terraform reaches out to AWS APIs and provisions a VPC, subnets, project tags.
 - Change the `CIDR`, `subnets`, `region` and `tags` under `main.tf`
 - Optional Cloudflare DNS Provider commented out under `provider.tf`
 - Varialbes: `ec2_image` `ssh_public_key_location`
 
+
 ###### 2. Terraform calls the AMI search module to turn our specs into the correct AMI ID
 - Outputs `ami_id` `root_device_name` `owner_id`
+
 
 ###### 3. Terraform calls the SSH keypair module to create an AWS keypair from yout public key
 - `public_key = file("${var.ssh_public_key_location}")`
 
+
 ###### 4. Terraform configures Security Group module and opens up the firewall
 - Add  home/proxy IP addresses under `ingress_with_cidr_blocks`
+
 
 ###### 5. Terraform calls sorrowset_EC2 Module and builds our server
 - Could change the `name` `instance_type` `key_name` `monitoring` and `volume` information
 
+
 ###### 5. Terraform runs shell code, updates VM, creates ansible user, adds keys, passwordless sudo
 - Change it if you want a different `ansible` user
 
+
 #### [ _What Ansible's Doing_ ]
+
 
 ###### 1. Ansible kicks off with `deploy.yml` 
 
 - `deploy.yml` Gathers facts and installs the role `requirements.yml` (or optionally installs them to the local path of the project) for the project. It sets variables for the Kasm installation, and kicks off installing those roles in that order.
 
+
 ###### 2. Ansible works the `inventory.yml` 
 
 - Sets the python interpreter, SSH/authorized keys, user/permissions and groups, pip/docker options and timezone to be used as the roles deploy
+
 
 ###### 3. Ansible installs roles
 
@@ -131,4 +143,4 @@ terraform output
 | Google Drive | [plugins/googledrive/README.md][PlGd] |
 | OneDrive | [plugins/onedrive/README.md][PlOd] |
 | Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa]
+| Google Analytics | [plugins/googleanalytics/README.md][PlGa] 
