@@ -98,7 +98,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-###### 2. Make your mods to `main.tf`, `inventory.yml`, ``providers.tf`, `variables.tf`
+###### 2. Make your mods to `main.tf`, `inventory.yml`, ``providers.tf` , `variables.tf`
 
  See above '_What Terraform's Doing_'
 
