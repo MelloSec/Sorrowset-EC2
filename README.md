@@ -5,7 +5,9 @@
 ## Features
 
 - Spin up an Attack VM/Container host on AWS
+  
 - Terraform to create server, networking and setup Ansible User
+  
 - Ansible to further configure, install Docker/Compose, containers 
 
 
