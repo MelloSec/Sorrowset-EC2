@@ -1,5 +1,5 @@
 ---
-- hosts: gophish_hosts
+- hosts: sorrowset-vm-1
   become: yes
   tasks:
     - include_role:
