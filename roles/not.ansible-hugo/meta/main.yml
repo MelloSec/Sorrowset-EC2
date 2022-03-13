@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  role_name: hugo
+  author: darkwizard242
+  description: Installs/Uninstalls 'Hugo', which is one of the most popular open source static site generator.
+  company: none
+  license: MIT
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+    - name: EL
+      versions:
+        - 7
+        - 8
+
+  galaxy_tags:
+    - hugo
+    - system
+    - os
+    - staticsitegenerator
+    - framework
+    - frontend

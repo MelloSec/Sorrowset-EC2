@@ -1,34 +1,26 @@
 ---
+
 dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-    yamllint .
-    ansible-lint
-    flake8
+lint:
+  name: yamllint
 platforms:
-  - name: ${DISTRO:-ubuntu-20.04}
-    image: "darkwizard242/ansible:${DISTRO:-ubuntu-20.04}"
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: hugo
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
     pre_build_image: true
-    privileged: true
 provisioner:
   name: ansible
-  log: true
-scenario:
-  name: default
-  test_sequence:
-    - lint
-    - destroy
-    - syntax
-    - create
-    - converge
-    - verify
-    - cleanup
-    - destroy
-verifier:
-  name: testinfra
   options:
     verbose: true
+  lint:
+    name: ansible-lint
+  playbooks:
+    prepare: ${MOLECULE_PREPARE_PLAYBOOK:-prepare.yml}
+    converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
