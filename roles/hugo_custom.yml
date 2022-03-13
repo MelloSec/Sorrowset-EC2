@@ -6,10 +6,11 @@
     hugo_projects:
         - name: sludge.one
           repo: 
+          key_file: "{{ ansible_user_dir }}/devops.pub"
   roles: 
     - role: ansible-hugo
 
-      key_file: "{{ ansible_user_dir }}/devops.pub"
+      
 
 
 # Same role diff user name it seems, or forked
