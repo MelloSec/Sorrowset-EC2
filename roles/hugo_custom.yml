@@ -1,0 +1,16 @@
+---
+- hosts: sorrowset-vm-1
+  become: true
+  vars:
+    hugo_install_dir: /usr/local/bin
+    hugo_projects:
+        - name: sludge.one
+          repo: 
+  roles: 
+    - role: ansible-hugo
+
+      key_file: "{{ ansible_user_dir }}/devops.pub"
+
+
+# Same role diff user name it seems, or forked
+# - role: xanmanning.hugo
