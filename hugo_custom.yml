@@ -1,0 +1,22 @@
+---
+- hosts: sorrowset-vm-1
+  become: true
+  vars:
+    hugo_install_dir: /usr/local/bin
+    hugo_projects:
+        - name: sludge.one
+          repo: https://github.com/mellonaut/sludge.blog-public.git
+          # key_file: "{{ ansible_user_dir }}/devops.pub"
+          update_repo: true                               # Always update local copy of repo
+          version:  master                                # Check out this version of the repo
+          force: false
+          recursive: true                                 # Include submodules in clone                                    # Discard any existing working copy of the repo
+  
+  roles: 
+    - role: ansible-hugo
+
+      
+
+
+# Same role diff user name it seems, or forked
+# - role: xanmanning.hugo
