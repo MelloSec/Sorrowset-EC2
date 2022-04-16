@@ -12,10 +12,10 @@
 # ansible-galaxy install -p ./roles geerlingguy.security geerlingguy.ntp weareinteractive.users 
 
 
-  vars:
-     - kasm_package: kasm_release_1.10.0.238225.tar.gz
-     - kasm_user_name: mellonaut
-     - display_creds: True
+  # vars:
+  #    - kasm_package: kasm_release_1.10.0.238225.tar.gz
+  #    - kasm_user_name: mellonaut
+  #    - display_creds: True
 
   roles:
     - { role: weareinteractive.users }
