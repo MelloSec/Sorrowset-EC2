@@ -1,5 +1,5 @@
 # Sorrowset EC2
-## _Fat, sad and full of Evil_
+## _Sad, Fat and full of Evil_
 
 
 ## Features
