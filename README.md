@@ -152,7 +152,8 @@ ansible-playbook -i inventory deploy.yml
 
 ## ToDo
 
-- [ ] CICD Config
+- [ ] CICD
 - [ ] S3 Backend
-- [ ] Phishingle
-- [ ] Redirector role 
+- [ ] Phishing role
+- [ ] Redirector role
+- [ ] Figure out wtf with Traefik 

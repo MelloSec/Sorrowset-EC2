@@ -1,0 +1,35 @@
+- name: Install Roles
+  gather_facts: yes
+  hosts: all
+  connection: ssh
+  become: True
+
+# - name: run ansible galaxy
+#   local_action: command ansible-galaxy install -r requirements.yml --ignore-errors
+#   become: yes # But do I need to?
+
+# the requirements.yml has been failing to install some things to the local roles folder so
+# ansible-galaxy install -p ./roles geerlingguy.security geerlingguy.ntp weareinteractive.users 
+
+
+  # vars:
+  #    - kasm_package: kasm_release_1.10.0.238225.tar.gz
+  #    - kasm_user_name: mellonaut
+  #    - display_creds: True
+
+  roles:
+    - { role: weareinteractive.users }
+    - { role: geerlingguy.pip }
+    - { role: geerlingguy.ntp }
+    - { role: geerlingguy.security }
+    # - { role: viasite-ansible.zsh, zsh_shared: yes}
+    - { role: docker }
+    - { role: os }
+    # - { role: ansible-elasticsearch }
+    # - { role: ansible-traefik }
+    # - { role: ansible-kasm_server }
+    # - { role: ansible-vault }
+    # - { role: darkwizard242.hugo }
+    # - { role: ansible-role-wireguard }
+    # - { role: justin_p.gophish }
+
