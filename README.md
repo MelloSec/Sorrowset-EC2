@@ -141,13 +141,18 @@ ansible-playbook deploy.yml
 
 # Cmds
 
+# Export expected keys, since DigitalOcean space is S3 compatible it expects your Space keys in the AWS environment variable format
+export AWS_ACCESS_KEY_ID="<<DO SPACE KEY1>>"
+export AWS_SECRET_ACCESS_KEY="<<DO SPACE KEY2>>"
+export DO_PAT="<<DO ACCESS TOKEN>>"
+
 # Apply with DO_Token exported on CMD line
-export DO_PAT=""
 terraform apply -auto-approve -var "do_token=${DO_PAT}"
 
+# Prep Ansible
 ansible-galaxy install --roles-path ~/roles -r requirements.yml
-
 export ANSIBLE_CONFIG=ansible.cfg
+vim /inventory/inventory.yml # Add the IP output from terraform
 ansible-playbook -i inventory deploy.yml
 
 # Destroy All Resources
