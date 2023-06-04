@@ -17,7 +17,7 @@
 ###### 1. Terraform reaches out to AWS APIs and provisions a VPC, subnets, project tags.
 - Change the `CIDR`, `subnets`, `region` and `tags` under `main.tf`
 - Optional Cloudflare DNS Provider commented out under `provider.tf`
-- Varialbes: `ec2_image` `ssh_public_key_location`
+- Variables: `ec2_image` `ssh_public_key_location`
 
 
 ###### 2. Terraform calls the AMI search module to turn our specs into the correct AMI ID
@@ -104,6 +104,10 @@ sudo ./aws/install
 ###### 2. Make your mods to `main.tf`, `inventory.yml`, `providers.tf`, `variables.tf`
 
  See above '_What Terraform's Doing_'
+ Create a keypair in your .ssh folder called "ansiblekey"
+ Open each of those files and Ctrl+f "<<USERNAME>>" and replace with yours. If these changes are made and ansiblekey/ansiblekey.pub exist in your user ssh folder you should be good.
+ Ctrl+f for "<<BUCKET>>" and change your "endpoint" "bucket" nad "key" to match your digital ocean space. This will hold your terraform state remotely, you can clone your repo, make changes and apply from any computer without confusing the cloud.
+
 
 ###### 3. Configure AWS cli with your Access Key and Secret Access Key from the AWS management console
 `
@@ -123,6 +127,8 @@ terraform apply --auto-approve
 
 ```
 terraform output
+code inventory/inventory.yml
+ctrl+f and replace "<<OUTPUT FROM TERRAFORM>>"
 ```
 
 ###### 6. Customize first run deployment by comment/uncomment roles under `deploy.yml` 
@@ -131,29 +137,30 @@ terraform output
 ansible-galaxy install -r requirements.yml
 ansible-playbook deploy.yml
 
+
+
+# Cmds
+
+# Apply with DO_Token exported on CMD line
 export DO_PAT=""
-
 terraform apply -auto-approve -var "do_token=${DO_PAT}"
-terraform destroy -auto-approve -var "do_token=${DO_PAT}"
-
-terraform apply 2>&1 | tee apply.txt
-
-
-$Env:TF_LOG = "TRACE"
-terraform apply 2>&1 | Tee-Object -FilePath apply.txt
-
-terraform apply -auto-approve -var "do_token=${DO_PAT}" -var "zt_token=${ZEROTIER_CENTRAL_TOKEN}"
-
 
 ansible-galaxy install --roles-path ~/roles -r requirements.yml
 
 export ANSIBLE_CONFIG=ansible.cfg
 ansible-playbook -i inventory deploy.yml
 
+# Destroy All Resources
+terraform destroy -auto-approve -var "do_token=${DO_PAT}"
+
+# Debug
+$Env:TF_LOG = "TRACE"
+terraform apply 2>&1 | Tee-Object -FilePath apply.txt
+
 ## ToDo
 
 - [ ] CICD
-- [ ] S3 Backend
+- [x] S3 DO Backend (create version without for those who dont want to pay for DO Space)
 - [ ] Phishing role
 - [ ] Redirector role
 - [ ] Figure out wtf with Traefik 
